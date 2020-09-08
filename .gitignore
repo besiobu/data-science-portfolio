@@ -131,3 +131,6 @@ dmypy.json
 
 # Ignore csv file
 *.csv
+
+# Ignore COVID-19 data
+/covid-19/data
