@@ -23,6 +23,14 @@ For convenience each folder contain a pdf version of the notebook.
 * Link to [dash app](https://github.com/besiobu/flats-in-cracow-dash) repo.
 * ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl
 
+### [Trading results analysis](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/Trading%20Results%20Analysis.ipynb)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/drawdown.png)
+* Analyzed total profit by market and trade direction.
+* Analyzed profit per contract traded.
+* Analyzed trade durations and daily trading activity.
+* Simulated future performance of strategy.
+* ***Keywords***: Python, Storytelling, Exploratory Data Analysis, Monte Carlo
+
 ### [Polar](https://github.com/besiobu/test/blob/master/polar/Polar.ipynb)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/polar/img/kilocalories_ts.png)
 * Obtained data from Polar watch.
