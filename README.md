@@ -19,8 +19,8 @@ For convenience each folder contain a pdf version of the notebook.
 * Wrote etl script to create usable dataset.
 * Engineered features and created model to predict property houses.
 * Created webapp on [Heroku](https://flats-in-cracow.herokuapp.com/).
-* See [scraping project](https://github.com/besiobu/flats-in-cracow) for scraping project.
-* See [dash app](https://github.com/besiobu/flats-in-cracow-dash) for dash app.
+* Link to [scraping project](https://github.com/besiobu/flats-in-cracow) repo.
+* Link to [dash app](https://github.com/besiobu/flats-in-cracow-dash) repo.
 * ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl
 
 ### [Polar](https://github.com/besiobu/test/blob/master/polar/Polar.ipynb)
