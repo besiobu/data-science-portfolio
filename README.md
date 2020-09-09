@@ -5,7 +5,7 @@ The projects are written mainly in Python (Jupyter Notebook).
 
 For convenience each folder contain a pdf version of the notebook.
 
-### [COVID-19](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/covid19.ipynb)
+### [COVID-19](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/COVID-19.ipynb)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles.png)
 * Combined data from multiple sources.
 * Visualized evolution of pandemic over time.
