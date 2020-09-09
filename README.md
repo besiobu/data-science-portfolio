@@ -31,7 +31,7 @@ For convenience each folder contain a pdf version of the notebook.
 * Simulated future performance of strategy.
 * ***Keywords***: Python, Storytelling, Exploratory Data Analysis, Monte Carlo
 
-### [Polar](https://github.com/besiobu/test/blob/master/polar/Polar.ipynb)
+### [Polar](https://github.com/besiobu/data-science-portfolio/blob/master/polar/Polar.ipynb)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/polar/img/kilocalories_ts.png)
 * Obtained data from Polar watch.
 * Turned JSON files into a usable dataset.
