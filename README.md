@@ -13,7 +13,7 @@ For convenience each folder contains a pdf version of the notebook.
 * Visualized mortality rate vs socioeconomic factors.
 * ***Keywords***: Python, Pandas, Matplotlib, Visualization
 
-### [Flats in Cracow](https://github.com/besiobu/data-science-portfolio/blob/master/flats-in-cracow/02_Build_Model.ipynb)
+### [Flats in Cracow](https://github.com/besiobu/data-science-portfolio/blob/master/flats-in-cracow/02_Model.ipynb)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/flats-in-cracow/img/district_vs_avg_amount.png)
 * Scraped a couple thousand property listings.
 * Wrote etl script to create usable dataset.
