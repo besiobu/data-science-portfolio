@@ -1,16 +1,16 @@
-# trading results
+# global terrorism
 
 ## Project goal
-The objective is to analyze trades placed by my trading algorithm.
+The objective is to analyze data from the ```Global Terrorism Database```.
 
 ### Methods
 * Data visualization
 * Data wrangling
 
 ### Technologies
-* Python
-* Pandas
-* Matplotlib
+* R
+* Ggplot
+* Tidyverse
 
 ## Project description
 ```Under constructiion.```
