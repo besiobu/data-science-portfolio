@@ -134,3 +134,6 @@ dmypy.json
 
 # Ignore COVID-19 data
 /covid-19/data
+
+# Ignore GTD data
+/global-terrorism/data
