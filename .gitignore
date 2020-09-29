@@ -137,3 +137,6 @@ dmypy.json
 
 # Ignore GTD data
 /global-terrorism/data
+
+# Ignore Polar data
+/polar/data
