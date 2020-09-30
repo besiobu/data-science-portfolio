@@ -13,7 +13,7 @@ The objective is to analyze trades placed by my trading algorithm.
 * Matplotlib
 
 ## Project description
-```Under constructiion.```
+```Under construction.```
 
-## Analysis & Notebooks
-```Under constructiion.```
+## Summary
+```Under construction.```

@@ -13,7 +13,7 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 * Tidyverse
 
 ## Project description
-```Under constructiion.```
+```Under construction.```
 
-## Analysis & Notebooks
-```Under constructiion.```
+## Summary
+```Under construction.```
