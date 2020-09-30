@@ -31,6 +31,14 @@ For convenience each folder contains a pdf version of the notebook.
 * Produced map to convey the attack locations of the 5 most active terrorist groups.
 * ***Keywords***: R, Tidyverse, ggplot
 
+### [Polar](https://github.com/besiobu/data-science-portfolio/blob/master/polar/Polar.ipynb)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/polar/img/kilocalories_ts.png)
+* Obtained data from Polar watch.
+* Turned JSON files into a usable dataset.
+* Conducted highly illustrated analysis on the data from various angles.
+* Constructed linear regression model to predict kilocalorie expenditure.
+* ***Keywords***: Python, Pandas, Data Wrangling, Linear Regression
+
 ### [Trading results analysis](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/Trading%20Results%20Analysis.ipynb)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/drawdown.png)
 * Analyzed total profit by market and trade direction.
@@ -38,10 +46,3 @@ For convenience each folder contains a pdf version of the notebook.
 * Analyzed trade durations and daily trading activity.
 * Simulated future performance of strategy.
 * ***Keywords***: Python, Storytelling, Exploratory Data Analysis, Monte Carlo
-
-### [Polar](https://github.com/besiobu/data-science-portfolio/blob/master/polar/Polar.ipynb)
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/polar/img/kilocalories_ts.png)
-* Obtained data from Polar watch.
-* Turned JSON files into a usable dataset.
-* Conducted basic analysis.
-* ***Keywords***: Python, Pandas, data wrangling
