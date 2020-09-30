@@ -1,0 +1,25 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           kiloCalories   R-squared:                       0.806
+Model:                            OLS   Adj. R-squared:                  0.805
+Method:                 Least Squares   F-statistic:                     1157.
+Date:                Wed, 30 Sep 2020   Prob (F-statistic):          2.86e-101
+Time:                        13:04:32   Log-Likelihood:                -1682.5
+No. Observations:                 281   AIC:                             3369.
+Df Residuals:                     279   BIC:                             3376.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         31.2200     10.141      3.078      0.002      11.257      51.183
+totalTime      6.6130      0.194     34.017      0.000       6.230       6.996
+==============================================================================
+Omnibus:                       46.124   Durbin-Watson:                   2.052
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              160.903
+Skew:                           0.648   Prob(JB):                     1.15e-35
+Kurtosis:                       6.473   Cond. No.                         91.7
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

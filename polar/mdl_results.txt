@@ -1,0 +1,30 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           kiloCalories   R-squared:                       0.913
+Model:                            OLS   Adj. R-squared:                  0.912
+Method:                 Least Squares   F-statistic:                     726.3
+Date:                Wed, 30 Sep 2020   Prob (F-statistic):          3.93e-145
+Time:                        13:04:32   Log-Likelihood:                -1569.2
+No. Observations:                 281   AIC:                             3148.
+Df Residuals:                     276   BIC:                             3167.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const         -458.4969     28.752    -15.947      0.000    -515.097    -401.896
+totalTime        6.6135      0.184     35.918      0.000       6.251       6.976
+heartRateQ99     4.0407      0.253     15.989      0.000       3.543       4.538
+indoors         -7.3449     10.699     -0.686      0.493     -28.408      13.718
+activityType   -62.3857     14.729     -4.236      0.000     -91.381     -33.391
+==============================================================================
+Omnibus:                       80.772   Durbin-Watson:                   2.122
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              800.952
+Skew:                          -0.830   Prob(JB):                    1.19e-174
+Kurtosis:                      11.103   Cond. No.                     1.00e+03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large,  1e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
