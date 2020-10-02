@@ -24,7 +24,7 @@ I extracted data from my Polar watch and after cleaning the dataset I built line
 
 * The clean dataset contains `283` workouts over a nearly one year period during which I burned roughly `12kg` of body fat.
 
-* After further transforming the data, I find that the `duration` of a workout and `kilocalorie`s burned have a `0.92` correlation. 
+* After further transforming the data, I find that the `duration` of a workout and `kilocalorie`'s burned have a `0.92` correlation. 
 
 * Several linear regressions were performed. 
 
