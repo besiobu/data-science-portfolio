@@ -14,4 +14,4 @@ Certain assumptions were made about the data.
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/deaths_by_attack_over_time.png)
 
 ## Attack location by group
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/group_attack_annotated.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/group_attack_annotated_blue_sea.png)
