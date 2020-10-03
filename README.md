@@ -29,7 +29,8 @@ For convenience each folder contains a pdf version of the notebook.
 * Cleaned data after consulting the 65 page long manual.
 * Ilustrated categorical and numerical variables and how they compare to the number of fatalities.
 * Plotted time series with fatalities over time and by weapon over time.
-* Produced map to convey the attack locations of the 5 most active terrorist groups.
+* Produced map to convey the attack locations of the five most active terrorist groups.
+* Checkout the mini gallery I made [here](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism/img).
 * ***Keywords***: R, Tidyverse, ggplot
 
 ### [Polar](https://github.com/besiobu/data-science-portfolio/blob/master/polar/Polar.ipynb)
