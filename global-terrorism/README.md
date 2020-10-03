@@ -16,9 +16,9 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 ```Under construction.```
 
 ## Summary
-* Between `2007` and `2017` at least `150 000` have died in terrorist attacks.
+* Between `2007` and `2017` at least `150 000` people have died in terrorist attacks.
 
-* Top 5 `regions` with most fatalities:
+* Top five `regions` with most fatalities:
 
 | Region | Fatalities|
 |--------|------------|
@@ -36,12 +36,12 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 
 * The most deadly months are `June` and `July`.
 
-* Top 5 `groups` with the most fatalities:
+* Top five `groups` with the most fatalities:
 
 | Group | Fatalities |
 |-------|------------|
 | Islamic State of Iraq and the Levant       | 28 022 |
-|Taliban     | 22935 |
-| Boko Haram | 17903 |
-| Al-Shabaab | 5621 |
-| Tehrik-i-Taliban Pakistan | 4762 |
+|Taliban     | 22 935 |
+| Boko Haram | 17 903 |
+| Al-Shabaab | 5 621 |
+| Tehrik-i-Taliban Pakistan | 4 762 |
