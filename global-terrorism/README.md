@@ -36,7 +36,7 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 
 * The most deadly months are `June` and `July`.
 
-* Top five `groups` with the most fatalities:
+* Five `groups` with the most fatalities:
 
 | Group | Fatalities |
 |-------|------------|
@@ -45,3 +45,21 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 | Boko Haram | 17 903 |
 | Al-Shabaab | 5 621 |
 | Tehrik-i-Taliban Pakistan | 4 762 |
+
+* Most deadly `group`'s attack location:
+| Group | Country |
+|-------|------------|
+| Islamic State of Iraq and the Levant       | Iraq |
+|Taliban     | Afghanistan |
+| Boko Haram | Nigeria |
+| Al-Shabaab | Somalia |
+| Tehrik-i-Taliban Pakistan | Pakistan |
+
+* Most deadly `group`'s dominant target type:
+| Group | Target |
+|-------|------------|
+| Islamic State of Iraq and the Levant       | Private |
+|Taliban     | Police |
+| Boko Haram | Private |
+| Al-Shabaab | Government |
+| Tehrik-i-Taliban Pakistan | Private |
