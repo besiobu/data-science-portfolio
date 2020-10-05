@@ -24,6 +24,6 @@ The second plot in the gallery shows the number of attacks by weapon type and re
 
 
 ## Attack location by group
-Lastly, I present you with a map revealing the attack locations of the `five most deadly` terrorist groups. Each dot represents an attack and each attack is colour code by group.
+Lastly, I present you with a map revealing the attack locations of the `five most deadly` terrorist groups. Each dot represents an attack and each attack is colour coded by group.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/group_attack_annotated_blue_sea.png)
