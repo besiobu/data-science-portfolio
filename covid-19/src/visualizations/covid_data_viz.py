@@ -7,6 +7,11 @@ from IPython.display import display
 from scipy.stats import linregress
 
 class CovidDataViz(object):
+    """
+
+    A class to make plots from processed COVID-19 and World Bank data.
+
+    """
 
     def __init__(self, path='../data/processed'):
 
@@ -33,7 +38,27 @@ class CovidDataViz(object):
         self.all_countries = sorted(set(self.data['Coordinates']['Country']))
         self.all_continents = sorted(set(self.data['Continents']['Continent']))
 
+    def list_highest_mortality(self, n=10):
+        """
+
+        Generate a list of countries with the highest moratlity rate.
+
+        Notes
+        -----
+        mortality = dead / confirmed.
+
+        """
+
+        df = self._sort_ctry_stats(stat_name='Mortality', n=n)
+        
+        return df
+
     def get_country_ts(self, country):
+        """
+
+        Extract country level cases time series.
+
+        """
 
         dfs = [self.data['Confirmed'][['Date', country]],
                self.data['Recovered'][['Date', country]],
@@ -47,6 +72,11 @@ class CovidDataViz(object):
         return df
 
     def get_continent_ts(self, continent):
+        """
+
+        Get continent level cases time series.
+
+        """
 
         cont = self.data['Continents'].copy()
         cont = cont[cont['Continent'] == continent]
@@ -72,6 +102,11 @@ class CovidDataViz(object):
         return df
 
     def get_world_ts(self):
+        """
+
+        Get world level cases time series.
+
+        """
 
         cases = ['Confirmed', 'Recovered', 'Dead', 'Active']
 
@@ -88,15 +123,11 @@ class CovidDataViz(object):
 
         return df
     
-    def plot_world_cases(self):
-
-        df = self.get_world_ts()
-
-        self.plot_ts(df=df, title='World')
-
     def get_highest_mortality(self, n_countries, min_cases=1000):
         """
         
+        List countries with highest moratlity rate.
+
         """
 
         df = self.data['Country stats']
@@ -105,21 +136,53 @@ class CovidDataViz(object):
         df = df.reset_index(drop=True)
         df = df.head(n_countries)
         df = df[['Country', 'Mortality']]
-        
+            
         return df
 
+    def get_most_cases(self, case_type, n=10):
+        """
+
+        Get n countries with most cases.
+
+        """
+
+        df = self._sort_ctry_stats(stat_name=case_type, n=n)
+        return df        
+      
+    def plot_world_cases(self):
+        """
+
+        Create world cases line plot.
+
+        """
+
+        df = self.get_world_ts()
+        self.plot_ts(df=df, title='World')
+
     def plot_country_cases(self, country):
+        """
+
+        Create individual country cases line plot.
+
+        """        
 
         df = self.get_country_ts(country=country)
         self.plot_ts(df, country)
 
     def plot_continent_cases(self, continent):
+        """
+
+        Create continent cases line plot.
+
+        """
 
         df = self.get_continent_ts(continent=continent)
         self.plot_ts(df, continent)
 
     def plot_ts(self, df, title):
         """
+
+        Draw individuall time series as a line plot.
 
         Inputs
         ------
@@ -140,49 +203,37 @@ class CovidDataViz(object):
         plt.title(f'{title}')
         plt.ylabel('Cases')
         plt.legend(loc='best')
+
+        plt.savefig(f'../img/{title.lower()}_cases.png')
+
         plt.tight_layout()            
 
-    def most_cases(self, case_type, n=10):
-        """
-        Get n countries with most cases.
-        """
-
-        df = self._sort_ctry_stats(stat_name=case_type, n=n)
-        return df
-
-    def highest_mortality(self, n=10):
-
-        df = self._sort_ctry_stats(stat_name='Mortality', n=n)
-        return df
-
-    def _sort_ctry_stats(self, stat_name, min_cases=5000, n=10):
-
-        df = self.data['Country stats'].copy()
-        df['Has min cases'] = df['Confirmed'] > min_cases
-        df = df[df['Has min cases'] == True]
-        df = df.sort_values(stat_name, ascending=False)
-        df = df.reset_index(drop=True)
-        df = df[['Country', stat_name]]    
-        df = df.head(n)
-
-        return df
-
     def plot_highest_country_stats(self, statistic, n=10):
-        """    
+        """
+
         Bar plot of countries with the most cases of a certain type.    
+
         """
             
-        df = self.most_cases(case_type=statistic)
+        df = self.get_most_cases(case_type=statistic)
 
         plt.figure()
         plt.bar(df['Country'], df[statistic])
         plt.xticks(rotation=90)
         plt.title(f'{statistic}')
-        plt.ylabel('Cases')
+
+        if statistic == 'Mortality':
+            plt.ylabel('Moratlity Rate (%)')
+        else:
+            plt.ylabel('Cases')
+
         plt.tight_layout()
+
+        plt.savefig(f'../img/{statistic.lower()}_cases_most.png')
+
         plt.show()                
 
-    def growth_plot(self, countries, periods, steps=50):
+    def plot_growth(self, countries, periods, steps=50, save=False):
         """
         
         Plot growth curves, log scale.
@@ -247,11 +298,17 @@ class CovidDataViz(object):
         plt.ylabel('Confirmed cases, log scale')
         plt.xlabel('Days since 100 cases')
         plt.tight_layout()
+
+        if save:
+            plt.savefig('../img/growth_plot.png')
+            
         plt.show()    
 
     def plot_country_cases_chg(self, country, n=7):
-        """        
+        """
+
         Plot country level change in cases with n day moving average.        
+
         """
 
         df = self.data['Confirmed chg'][['Date', country]].copy()
@@ -272,9 +329,16 @@ class CovidDataViz(object):
         plt.ylabel('Daily new cases')
         plt.legend(loc='best')
         plt.tight_layout()
+        plt.savefig(f'../img/{country.lower()}_cases_chg.png')
         plt.show()  
 
     def plot_with_slope(self, x, y):
+        """
+
+        Create scatter plot with regression line and 
+        greyed out R squared.
+
+        """
 
         X = self.data['World bank'][x]
         Y = self.data['World bank'][y]
@@ -310,17 +374,41 @@ class CovidDataViz(object):
 
         plt.xlabel(f'{x}')
         plt.ylabel(f'{y}')
-        plt.legend(loc='upper left')
+        # plt.legend(loc='upper left')
 
         plt.tight_layout()
         plt.show()        
+ 
+    def _sort_ctry_stats(self, stat_name, min_cases=5000, n=10):
+        """
+
+        Sort the dataframe of country statistics using a cutoff
+        of `min_cases` and return top `n` countries.
+
+        """
+
+        df = self.data['Country stats'].copy()
+        df['Has min cases'] = df['Confirmed'] > min_cases
+        df = df[df['Has min cases'] == True]
+        df = df.sort_values(stat_name, ascending=False)
+        df = df.reset_index(drop=True)
+        df = df[['Country', stat_name]]    
+        df = df.head(n)
+
+        return df
 
     def show_corr_mat(self):
+        """
+
+        Display colourfull correlation matrix of cases with socioeconomic factors.        
+
+        """
 
         C = self.data['World bank'].corr()
         C = C.style.background_gradient(cmap='coolwarm')
         C = C.set_precision(2)
         C = C.set_table_attributes('style="font-size: 13px"')
+        
         display(C)
 
 def exp_growth(a, b, t, tau):
