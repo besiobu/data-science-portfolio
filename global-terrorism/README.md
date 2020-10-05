@@ -47,6 +47,7 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 | Tehrik-i-Taliban Pakistan | 4 762 |
 
 * Most deadly `group`'s attack location:
+
 | Group | Country |
 |-------|------------|
 | Islamic State of Iraq and the Levant       | Iraq |
@@ -56,6 +57,7 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 | Tehrik-i-Taliban Pakistan | Pakistan |
 
 * Most deadly `group`'s dominant target type:
+
 | Group | Target |
 |-------|------------|
 | Islamic State of Iraq and the Levant       | Private |
@@ -63,3 +65,5 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 | Boko Haram | Private |
 | Al-Shabaab | Government |
 | Tehrik-i-Taliban Pakistan | Private |
+
+* For images see the [mini gallery](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism/img) I built showcasing timeseries and geospatial data.
