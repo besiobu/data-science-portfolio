@@ -59,4 +59,4 @@ I extracted data from my Polar watch and after cleaning the dataset I built line
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/polar/img/mdl_predicted_vs_actual.png)
 
-* The biggest errors made by the `mixed model` was on strength training data points.
+* The biggest `errors` made by the `mixed model` was on `strength training` data points.
