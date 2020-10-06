@@ -30,17 +30,17 @@ I extracted data from my Polar watch and after cleaning the dataset I built line
 
 * `kilocalories ~ duration` on the entire dataset achieved `R^2 = 0.85` and `RMSE = 79`.
 
-* Regressions were performed on subsets of the data, specifically by sport - the highest slope is 10.14 `kiloCalories` per minute.
+* Regressions were performed on subsets of the data, specifically by sport - the highest slope is `10.14 kiloCalories` per minute.
 
 <!-- <center> -->
 | Formula                  | Sport             |   Intercept |   Slope |   R squared |
 |:-------------------------|:------------------|------------:|--------:|------------:|
-| kiloCalories ~ totalTime | treadmill_running |      -21.23 |   10.14 |        0.96 |
-| kiloCalories ~ totalTime | cycling           |       -9.73 |    7.44 |        0.98 |
-| kiloCalories ~ totalTime | walking           |       12.59 |    6.95 |        0.82 |
-| kiloCalories ~ totalTime | strength_training |      -12.73 |    6.76 |        0.44 |
+| kilo_calories ~ total_time | treadmill_running |      -21.23 |   10.14 |        0.96 |
+| kilo_calories ~ total_time | cycling           |       -9.73 |    7.44 |        0.98 |
+| kilo_calories ~ total_time | walking           |       12.59 |    6.95 |        0.82 |
+| kilo_calories ~ total_time | strength_training |      -12.73 |    6.76 |        0.44 |
 <!-- </center> -->
 
 * A `linear mixed model with random effects` was created and validated. It achieved a `RMSE = 61` and normal looking residuals.
 
-* The biggest errors made by the mixed model was on strength training data points.
+* The biggest errors made by the `mixed model` was on strength training data points.
