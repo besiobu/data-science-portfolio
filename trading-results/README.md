@@ -26,8 +26,14 @@ First some background information: I wrote a trading algorithm, hosted it on a V
 
 * The per contract `distribution of profit` has a mean of `0.49 PLN` and standard deviation of `22.8 PLN`. The distribution exhibits `positive skew` and `leptokurtosis`.
 
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/profit_histogram.png)
+
 * Around the `50`-th trade the strategy entered a period of drawdown that lasted `4 days 03:48:00`. During that time the algorithm lost `243.01 PLN`.
 
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/drawdown.png)
+
 * Under the assumption that market behaviour does not change the `probability` of the algorithm `making money` over the next `100` trades is `56.63%`.
+
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/probability_of_loss.png)
 
 * Under the same assumption as above, a `cumulative loss` of more than `306.93 PLN` should force a re-evaluation of the algorithm.
