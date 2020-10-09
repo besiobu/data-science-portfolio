@@ -26,6 +26,7 @@ For convenience each folder contains a pdf version of the notebook.
 
 ### [Cryptocollector](https://github.com/besiobu/cryptocollector)
 <img src="https://raw.githubusercontent.com/besiobu/cryptocollector/main/img/xbt_report.PNG" width="775" height="350" />
+
 * Created a Python module to `stream` and `store` trades from cryptocurrency exchanges in a database.
 * If a write to the database fails the message is saved as a `json`. 
 * The Python module has a `run forever` script.
