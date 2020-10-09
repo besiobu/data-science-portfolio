@@ -17,12 +17,12 @@ For convenience each folder contains a pdf version of the notebook.
 ### [Flats in Cracow](https://github.com/besiobu/data-science-portfolio/tree/master/flats-in-cracow)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/flats-in-cracow/img/district_vs_avg_amount.png)
 * Scraped a couple thousand property listings.
-* Wrote etl script to create usable dataset.
+* Wrote ETL script to create usable dataset.
 * Engineered features and created model to predict property houses.
 * Created webapp on [Heroku](https://flats-in-cracow.herokuapp.com/).
 * Link to [scraping & machine learning](https://github.com/besiobu/flats-in-cracow) repo.
 * Link to [dash app](https://github.com/besiobu/flats-in-cracow-dash) repo.
-* ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl, Machine Learning
+* ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, ETL, Machine Learning
 
 ### [Cryptocollector](https://github.com/besiobu/cryptocollector)
 ![image](https://github.com/besiobu/cryptocollector/blob/main/img/xbt_report.PNG)
@@ -32,7 +32,7 @@ For convenience each folder contains a pdf version of the notebook.
 * Created datawarehouse using SQL Server.
 * The data uses a snowflake schema with a seperate staging area.
 * Created reports using Power BI about data collection process.
-* ***Keywords***: Python, Transact-SQL, Database, Datawarehouse, Etl, Power BI, Websockets
+* ***Keywords***: Python, Transact-SQL, Database, Datawarehouse, ETL, Power BI, Websockets
 
 ### [Global Terrorism](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/top_five_groups_percent_ts.png)
