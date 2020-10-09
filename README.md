@@ -22,7 +22,7 @@ For convenience each folder contains a pdf version of the notebook.
 * Created webapp on [Heroku](https://flats-in-cracow.herokuapp.com/).
 * Link to [scraping & machine learning](https://github.com/besiobu/flats-in-cracow) repo.
 * Link to [dash app](https://github.com/besiobu/flats-in-cracow-dash) repo.
-* ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl
+* ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl, Machine Learning
 
 ### [Cryptocollector](https://github.com/besiobu/cryptocollector)
 ![image](https://github.com/besiobu/cryptocollector/blob/main/img/xbt_report.PNG)
@@ -49,7 +49,7 @@ For convenience each folder contains a pdf version of the notebook.
 * Turned JSON files into a usable dataset.
 * Conducted highly illustrated analysis on the data from various angles.
 * Constructed linear regression model to predict kilocalorie expenditure.
-* ***Keywords***: Python, Pandas, Data Wrangling, Linear Regression
+* ***Keywords***: Python, Pandas, Data Wrangling, Linear Regression, Statistics
 
 ### [Trading results analysis](https://github.com/besiobu/data-science-portfolio/tree/master/trading-results)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/trading-results/img/drawdown.png)
@@ -57,4 +57,4 @@ For convenience each folder contains a pdf version of the notebook.
 * Analyzed profit per contract traded.
 * Analyzed trade durations and daily trading activity.
 * Simulated future performance of strategy and gave lower bound on drawdown.
-* ***Keywords***: Python, Storytelling, Exploratory Data Analysis, Monte Carlo
+* ***Keywords***: Python, Storytelling, Exploratory Data Analysis, Monte Carlo, Probability
