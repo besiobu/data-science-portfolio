@@ -25,7 +25,7 @@ For convenience each folder contains a pdf version of the notebook.
 * ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl
 
 ### [Cryptocollector](https://github.com/besiobu/cryptocollector)
-![image](https://raw.githubusercontent.com/besiobu/cryptocollector/main/img/xbt_report.png)
+![image](https://github.com/besiobu/cryptocollector/blob/main/img/xbt_report.PNG)
 * Created a Python module to `stream` and `store` trades from cryptocurrency exchanges in a database.
 * If a write to the database fails the message is saved as a `json`. 
 * The Python module has a `run forever` script.
