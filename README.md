@@ -24,6 +24,15 @@ For convenience each folder contains a pdf version of the notebook.
 * Link to [dash app](https://github.com/besiobu/flats-in-cracow-dash) repo.
 * ***Keywords***: Python, Scrapy, Pandas, Dash, Regression, Etl
 
+### [Cryptocollector](https://github.com/besiobu/cryptocollector)
+<img src="https://raw.githubusercontent.com/besiobu/cryptocollector/main/img/xbt_report.PNG" width="775" height="350" />
+* Created a Python module to `stream` and `store` trades from cryptocurrency exchanges in a database.
+* If a write to the database fails the message is saved as a `json`. 
+* The Python module has a `run forever` script.
+* Create `datawarehouse` using SQL Server.
+* Created `reports` using Power BI about data collection process.
+* ***Keywords***: Python, Transact-SQL, Databases, Etl, Power BI, Websockets
+
 ### [Global Terrorism](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/top_five_groups_percent_ts.png)
 * Cleaned data after consulting the 65 page long manual.
