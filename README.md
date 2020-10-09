@@ -30,7 +30,8 @@ For convenience each folder contains a pdf version of the notebook.
 * Created a Python module to `stream` and `store` trades from cryptocurrency exchanges in a database.
 * If a write to the database fails the message is saved as a `json`. 
 * The Python module has a `run forever` script.
-* Create `datawarehouse` using SQL Server.
+* Created `datawarehouse` using SQL Server.
+* The data uses a `snowflake` schema with a seperate staging area.
 * Created `reports` using Power BI about data collection process.
 * ***Keywords***: Python, Transact-SQL, Databases, Etl, Power BI, Websockets
 
