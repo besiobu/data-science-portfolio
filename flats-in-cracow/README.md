@@ -16,7 +16,7 @@ The goal of this project is to build a model to predict flat prices in `Cracow, 
 
 * Super expensive properties (`outliers`) are removed from the dataset.
 
-* Furthermore the data is limited to only contain `20m2 <= area <= 130m2` 
+* Furthermore the data is limited to only contain  `22m2 <= area <= 130m2` 
 
 * Certain assumptions about the data were made. The key one being that a `title` uniquely defines a listing.
 
@@ -32,9 +32,9 @@ The goal of this project is to build a model to predict flat prices in `Cracow, 
 | Total Rooms | The sum of `Rooms` and `Bathrooms` |
 | Area to Rooms | The ratio of `Area` to `Rooms` |
 
-* 4 models were trained on a containing `80%` of the data.
+* 4 models were trained on a subset containing `80%` of the data.
 
-* Different pipelines were constructed for model training. In these piples `one hot encoding` and `min max scaling` were applied.
+* Different pipelines were constructed for model training. In these pipelines `one hot encoding` and `min max scaling` were applied.
 
 * `5-fold cross validation` was applied when tuning parameters.
 
@@ -42,12 +42,12 @@ The goal of this project is to build a model to predict flat prices in `Cracow, 
 
 | Name | Description | RMSE |
 |------|-------------|-------|
-| Voter | Linear combination of Gradient Boosting and Multi-layer perceptron | `116 478 PLN` |
-| Multi-layer Perception | Find weights in non linear function to minimize error | `119 237 PLN` |
+| Vote | Linear combination of Gradient Boosting and Multi-layer perceptron | `116 478 PLN` |
+| Multilayer Perception | Find weights in non linear function to minimize error | `119 237 PLN` |
 | Gradient Boosting | Build decision trees to minimize error | `120 493 PLN` |
 | Baseline | Use mean to predict price | `222 475 PLN` |
 
-* The model has issues predicting large properties. This may be caused by the simple fact that the more large (luxurious) the property the more potential factors could influence the price that are not in the datset.
+* The model has issues predicting large properties. This may be caused by the simple fact that the more large (luxurious) the property the more potential factors could influence the price that are not in the dataset.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/flats-in-cracow/img/area_vs_amount.png)
 
