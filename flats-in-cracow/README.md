@@ -16,13 +16,13 @@ The goal of this project is to build a model to predict flat prices in `Cracow, 
 
 * Super expensive properties (`outliers`) are removed from the dataset.
 
-* Furthermore the data is limited to only conatin `22m2 <= area <= 130m2` 
+* Furthermore the data is limited to only contain `20m2 <= area <= 130m2` 
 
 * Certain assumptions about the data were made. The key one being that a `title` uniquely defines a listing.
 
 * Missing data points in numerical columns (`rooms`) are filled in with a `k nearest neighbours` imputer.
 
-* After carefully cleaining the data I obtained `4 500` data points about `flats`.
+* After carefully cleaning the data I obtained `4 500` data points about `flats`.
 
 * Example features that were engineered:
 

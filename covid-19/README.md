@@ -13,7 +13,7 @@ The objective is to visualize various aspects of the pandemic of 2020.
 * Matplotlib
 
 ## Project description
-I plot `timeseries` for `continents` and `countries`, inspect the `mortality rate` a create visuals to view the `rate of the spread` in the early days of the pandemic.
+I plot `time series` for `continents` and `countries`, inspect the `mortality rate` and create visuals to view the `rate of the spread` in the early days of the pandemic.
 Furthermore I combine data about cases with data from the `World Bank` to see if I can uncover any interesting insights. For the analysis see the `notebooks` folder.
 In total there are `52` different plots of various granularities. See the `img` folder for the plots.
 
@@ -23,7 +23,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/world_cases.png)
 
-* The `exponential growth` in countries with the most cases lasted approximatley `30 days`.
+* The `exponential growth` in countries with the most cases lasted approximately `30 days`.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/growth_plot.png)
 
@@ -31,7 +31,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/confirmed_cases_most.png)
 
-* The countries with the highest mortality rate are `Italy` followed by `Mexico` and `United Kingdom`.
+* The countries with the highest mortality rate are `Italy` followed by `Mexico` and the `United Kingdom`.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/mortality_cases_most.png)
 
@@ -43,7 +43,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/india_cases_chg.png)
 
-* A `second wave` on infections is appearing in some countries.
+* A `second wave` of infections is appearing in some countries.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles.png)
 
