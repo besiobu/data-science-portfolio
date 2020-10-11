@@ -34,7 +34,7 @@ For convenience each folder contains a pdf version of the notebook.
 * Created reports using Power BI about data collection process.
 * ***Keywords***: Python, Transact-SQL, Database, Data Warehouse, ETL, Power BI, Websocket
 
-### [Global Terrorism](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism)
+### [Global Terrorism](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism) | [Gallery](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism/img)
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/global-terrorism/img/top_five_groups_percent_ts.png)
 * Cleaned data after consulting the 65 page long manual.
 * Illustrated categorical and numerical variables and how they compare to the number of fatalities.
