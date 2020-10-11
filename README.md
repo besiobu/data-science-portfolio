@@ -27,8 +27,8 @@ For convenience each folder contains a pdf version of the notebook.
 ### [Cryptocollector](https://github.com/besiobu/cryptocollector)
 ![image](https://github.com/besiobu/cryptocollector/blob/main/img/xbt_report.PNG)
 * Created a Python module to stream and store trades from cryptocurrency exchanges in a database.
-* If a write to the database fails the message is saved as a json. 
-* The Python module has a run forever script.
+* Exception handling: If a write to the database fails the message is saved as a json. 
+* The module includes a run forever script.
 * Created datawarehouse using SQL Server.
 * The data uses a snowflake schema with a seperate staging area.
 * Created reports using Power BI about data collection process.
