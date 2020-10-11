@@ -16,7 +16,7 @@ The objective is to analyze data from the ```Global Terrorism Database```.
 ```Under construction.```
 
 ## [Gallery](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism/img)
-* For images see the [mini gallery] I built showcasing time series and geospatial data.
+* For images see the [mini gallery](https://github.com/besiobu/data-science-portfolio/tree/master/global-terrorism/img) I built showcasing time series and geospatial data.
 
 ## Summary
 * Between `2007` and `2017` at least `150 000` people have died in terrorist attacks.
