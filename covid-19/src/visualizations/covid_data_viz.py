@@ -1,10 +1,13 @@
 from functools import reduce
 
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from IPython.display import display
+from matplotlib.dates import DateFormatter
 from scipy.stats import linregress
+
 
 class CovidDataViz(object):
     """
@@ -182,27 +185,117 @@ class CovidDataViz(object):
     def plot_ts(self, df, title):
         """
 
-        Draw individuall time series as a line plot.
+        Draw individual time series as a line plot.
 
         Inputs
         ------
         df : pd.DataFrame
             A dataframe with a `Date` column and cases data.
+        title : str
+            The title of the plot
+
+        Notes
+        -----
+        This will create a time series plot of cases. It
+        will also save the plot to ../img/{title}.png
 
         """
 
+        # Set proper aspect ratio and dpi
+        width, height, dpi = 825, 450, 100
+        plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
+        ax = plt.subplot(111)
+
+        # Extend x axis so that labels fit inside the plot
+        extend_x_axis = pd.Timedelta('7 days')
+
+        # Extend plot by 5% to make space between
+        # plot and title
+        extend_y_axis = 1.05
+
+        # Disable axis
+        ax.spines['top'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+
+        # Force ticks to bottom left
+        ax.get_xaxis().tick_bottom()
+        ax.get_yaxis().tick_left()
+
+        # Get min and max values to set limits
+        # Set minimum y value to -10_000 so that 
+        # points fit inside the plot.
+        xmin = df['Date'].min()
+        xmax = df['Date'].max() + extend_x_axis
+        ymin = -10 ** 4
+        ymax = df.drop(['Date'], axis=1).max().max() 
+
+        # Apply different formatting for cases
+        # below 100_000 and above 1_000_000 
+        if ymax > 10 ** 6:
+            # Display milions rounded to 1 decimal
+            horiz_line_vals = [ i * ymax / 4 for i in range(1, 5)]
+            horiz_line_vals = [round(x, -3) for x in horiz_line_vals]
+            ticks = [val for val in horiz_line_vals]
+            labels = [f'{val / 10 ** 6: .1f}m' for val in horiz_line_vals]            
+        elif ymax <= 10 ** 5 and ymax <= 10 ** 6:
+            # Display thousands rounded to 1 decimal
+            horiz_line_vals = [ i * ymax / 4 for i in range(1, 5)]
+            horiz_line_vals = [round(x, -3) for x in horiz_line_vals]
+            ticks = [val for val in horiz_line_vals]
+            labels = [f'{val / 10 ** 3: .1f}k' for val in horiz_line_vals]            
+
+        plt.yticks(ticks=ticks, labels=labels, 
+                   fontsize=14, family='serif')
+
+        plt.xticks(fontsize=14, family='serif')
+
+        # Display label of every other month
+        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
+        ax.xaxis.set_major_locator(mdates.MonthLocator(interval=2))
+
+        # Plot horizontal greyed out lines so that people can
+        # actually see the data without squinting
+        for y_val in horiz_line_vals:
+            ax.plot(df['Date'], np.full((len(df), 1), y_val), c='black', 
+                    linestyle='dashed', linewidth=1/2, alpha=3/10)
+
+        # User colors from color brewer.
+        colours = ['#d7191c', '#fdae61', '#a6d96a', '#1a9641']
+
+        # Extract list of columns in alphabeticall order
         cols = sorted(df.drop('Date', axis=1).columns)
 
-        plt.figure()
+        # Plot the actual data
+        for col,c in zip(cols, colours):
+            # Line plot
+            ax.plot(df['Date'], df[col], linewidth=5/2, alpha=9/10, c=c)
 
-        for col in cols:
-            plt.plot(df['Date'], df[col], label=col)
-            
-        plt.xlim(df['Date'].min(), df['Date'].max())
-        plt.ylim(0)
-        plt.title(f'{title}')
-        plt.ylabel('Cases')
-        plt.legend(loc='best')
+            # Plot marker at end of x axis
+            ax.scatter(x=df['Date'].tail(1), y=df[col].tail(1), linewidth=6, c=c,             
+                       marker='o', alpha=9/10)
+
+            # Plot label outside plot
+            ax.text(x=df['Date'].tail(1) + pd.Timedelta('7 days'), 
+                    y=df[col].tail(1), s=col, fontsize=14, c=c,
+                    family='serif', horizontalalignment='left',
+                    verticalalignment='center')
+
+        # Display title left aligned to y axis
+        plt.title(label=title, fontsize=24, family='serif', loc='left')
+
+
+        # Set plot limits and extend y by 5%
+        plt.xlim(xmin, xmax)
+
+        ymax *= extend_y_axis
+        plt.ylim(ymin, ymax)
+    
+        plt.tick_params(axis='both', which='both', 
+                        bottom=False, top=False,    
+                        labelbottom='on', left=False, 
+                        right=False, labelleft='on')            
 
         plt.savefig(f'../img/{title.lower()}_cases.png')
 
