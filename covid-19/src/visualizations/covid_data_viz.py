@@ -161,7 +161,7 @@ class CovidDataViz(object):
         """
 
         df = self.get_world_ts()
-        self.plot_ts(df=df, title='World')
+        self.plot_ts(df=df, title='World', suffix='cases')
 
     def plot_country_cases(self, country):
         """
@@ -171,7 +171,7 @@ class CovidDataViz(object):
         """        
 
         df = self.get_country_ts(country=country)
-        self.plot_ts(df, country)
+        self.plot_ts(df, country, 'cases')
 
     def plot_continent_cases(self, continent):
         """
@@ -181,9 +181,9 @@ class CovidDataViz(object):
         """
 
         df = self.get_continent_ts(continent=continent)
-        self.plot_ts(df, continent)
+        self.plot_ts(df, continent, 'cases')
       
-    def plot_ts(self, df, title):
+    def plot_ts(self, df, title, suffix):
         """
 
         Draw individual time series as a line plot.
@@ -283,7 +283,7 @@ class CovidDataViz(object):
         plt.xlim(xmin, xmax)
 
         # Set minimum y value to -2% of ymax so that 
-        plt.ylim(-extend_y_axis * ymax, (1+extend_y_axis) * ymax)
+        plt.ylim(-extend_y_axis * ymax, (1 + extend_y_axis) * ymax)
     
         plt.tick_params(axis='both', which='both', 
                         bottom=False, top=False,    
@@ -292,7 +292,7 @@ class CovidDataViz(object):
 
         plt.tight_layout()            
 
-        plt.savefig(f'../img/{title.lower()}_cases.png', bbox_inches='tight')
+        plt.savefig(f'../img/{title.lower()}_{suffix}.png', bbox_inches='tight')
 
     def plot_highest_country_stats(self, statistic, n=10):
         """
@@ -398,32 +398,10 @@ class CovidDataViz(object):
         """
 
         df = self.data['Confirmed chg'][['Date', country]].copy()
-        # df = df.rename(columns={country: 'New cases'})
         df[f'{n} day average \n of new cases'] = df[country].rolling(n).mean()
         df = df.drop(country, axis=1)
 
-        self.plot_ts(df=df, title=country)
-
-        # df = self.data['Confirmed chg'][['Date', country]].copy()
-        # df = df.rename(columns={country: 'New cases'})
-        
-        # plt.plot(df['Date'], df['New cases'],
-        #          label='New cases', alpha=1/2)
-        
-        # plt.fill_between(df['Date'], y1=0, y2=df['New cases'], alpha=1/4)
-        
-        # plt.plot(df['Date'], df['New cases'].rolling(n).mean(), 
-        #          label=f'{n} day average', c='black')    
-        
-        # plt.xlim(df['Date'].min(), df['Date'].max())
-        # plt.ylim(0)
-
-        # plt.title(f'{country}')
-        # plt.ylabel('Daily new cases')
-        # plt.legend(loc='best')
-        # plt.tight_layout()
-        # plt.savefig(f'../img/{country.lower()}_cases_chg.png')
-        # plt.show()  
+        self.plot_ts(df=df, title=country, suffix='chg')
 
     def plot_with_slope(self, x, y):
         """
