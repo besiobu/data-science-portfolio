@@ -8,6 +8,7 @@ from IPython.display import display
 from matplotlib.dates import DateFormatter
 from scipy.stats import linregress
 
+from utils import get_vlines
 
 class CovidDataViz(object):
     """
@@ -126,7 +127,7 @@ class CovidDataViz(object):
 
         return df
     
-    def get_highest_mortality(self, n_countries, min_cases=1000):
+    def get_highest_mortality(self, n_countries, min_cases=10 ** 4):
         """
         
         List countries with highest moratlity rate.
@@ -181,7 +182,7 @@ class CovidDataViz(object):
 
         df = self.get_continent_ts(continent=continent)
         self.plot_ts(df, continent)
-
+      
     def plot_ts(self, df, title):
         """
 
@@ -202,7 +203,12 @@ class CovidDataViz(object):
         """
 
         # Set proper aspect ratio and dpi
-        width, height, dpi = 825, 450, 100
+        width = 1650
+        height = width / 2.33
+        dpi = 300
+        fontsize = 8
+        fontfamily = 'serif'
+
         plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
         ax = plt.subplot(111)
 
@@ -211,7 +217,7 @@ class CovidDataViz(object):
 
         # Extend plot by 5% to make space between
         # plot and title
-        extend_y_axis = 1.05
+        extend_y_axis = 0.04
 
         # Disable axis
         ax.spines['top'].set_visible(False)
@@ -224,32 +230,18 @@ class CovidDataViz(object):
         ax.get_yaxis().tick_left()
 
         # Get min and max values to set limits
-        # Set minimum y value to -10_000 so that 
         # points fit inside the plot.
         xmin = df['Date'].min()
         xmax = df['Date'].max() + extend_x_axis
-        ymin = -10 ** 4
+        ymin = df.drop(['Date'], axis=1).min().min() 
         ymax = df.drop(['Date'], axis=1).max().max() 
 
-        # Apply different formatting for cases
-        # below 100_000 and above 1_000_000 
-        if ymax > 10 ** 6:
-            # Display milions rounded to 1 decimal
-            horiz_line_vals = [ i * ymax / 4 for i in range(1, 5)]
-            horiz_line_vals = [round(x, -3) for x in horiz_line_vals]
-            ticks = [val for val in horiz_line_vals]
-            labels = [f'{val / 10 ** 6: .1f}m' for val in horiz_line_vals]            
-        elif ymax <= 10 ** 5 and ymax <= 10 ** 6:
-            # Display thousands rounded to 1 decimal
-            horiz_line_vals = [ i * ymax / 4 for i in range(1, 5)]
-            horiz_line_vals = [round(x, -3) for x in horiz_line_vals]
-            ticks = [val for val in horiz_line_vals]
-            labels = [f'{val / 10 ** 3: .1f}k' for val in horiz_line_vals]            
+        yticks, ylabels = get_vlines(ymin, ymax, k=3)
 
-        plt.yticks(ticks=ticks, labels=labels, 
-                   fontsize=14, family='serif')
+        plt.yticks(ticks=yticks, labels=ylabels, 
+                   fontsize=fontsize, family=fontfamily)
 
-        plt.xticks(fontsize=14, family='serif')
+        plt.xticks(fontsize=fontsize, family=fontfamily)
 
         # Display label of every other month
         ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
@@ -257,7 +249,7 @@ class CovidDataViz(object):
 
         # Plot horizontal greyed out lines so that people can
         # actually see the data without squinting
-        for y_val in horiz_line_vals:
+        for y_val in yticks:
             ax.plot(df['Date'], np.full((len(df), 1), y_val), c='black', 
                     linestyle='dashed', linewidth=1/2, alpha=3/10)
 
@@ -270,36 +262,37 @@ class CovidDataViz(object):
         # Plot the actual data
         for col,c in zip(cols, colours):
             # Line plot
-            ax.plot(df['Date'], df[col], linewidth=5/2, alpha=9/10, c=c)
+            ax.plot(df['Date'], df[col], linewidth=3/2, alpha=9/10, c=c)
 
             # Plot marker at end of x axis
-            ax.scatter(x=df['Date'].tail(1), y=df[col].tail(1), linewidth=6, c=c,             
-                       marker='o', alpha=9/10)
+            x = df['Date'].tail(1)
+            y = df[col].tail(1)
+            ax.scatter(x=x, y=y, linewidth=3, c=c, marker='.', alpha=9/10)
 
             # Plot label outside plot
             ax.text(x=df['Date'].tail(1) + pd.Timedelta('7 days'), 
-                    y=df[col].tail(1), s=col, fontsize=14, c=c,
-                    family='serif', horizontalalignment='left',
+                    y=df[col].tail(1), s=col, fontsize=fontsize, c=c,
+                    family=fontfamily, horizontalalignment='left',
                     verticalalignment='center')
 
         # Display title left aligned to y axis
-        plt.title(label=title, fontsize=24, family='serif', loc='left')
-
+        plt.title(label=title, fontsize=fontsize + 1, family=fontfamily,
+                   weight='bold', loc='left')
 
         # Set plot limits and extend y by 5%
         plt.xlim(xmin, xmax)
 
-        ymax *= extend_y_axis
-        plt.ylim(ymin, ymax)
+        # Set minimum y value to -2% of ymax so that 
+        plt.ylim(-extend_y_axis * ymax, (1+extend_y_axis) * ymax)
     
         plt.tick_params(axis='both', which='both', 
                         bottom=False, top=False,    
                         labelbottom='on', left=False, 
                         right=False, labelleft='on')            
 
-        plt.savefig(f'../img/{title.lower()}_cases.png')
-
         plt.tight_layout()            
+
+        plt.savefig(f'../img/{title.lower()}_cases.png', bbox_inches='tight')
 
     def plot_highest_country_stats(self, statistic, n=10):
         """
@@ -405,25 +398,32 @@ class CovidDataViz(object):
         """
 
         df = self.data['Confirmed chg'][['Date', country]].copy()
-        df = df.rename(columns={country: 'New cases'})
-        
-        plt.plot(df['Date'], df['New cases'],
-                 label='New cases', alpha=1/2)
-        
-        plt.fill_between(df['Date'], y1=0, y2=df['New cases'], alpha=1/4)
-        
-        plt.plot(df['Date'], df['New cases'].rolling(n).mean(), 
-                 label=f'{n} day average', c='black')    
-        
-        plt.xlim(df['Date'].min(), df['Date'].max())
-        plt.ylim(0)
+        # df = df.rename(columns={country: 'New cases'})
+        df[f'{n} day average \n of new cases'] = df[country].rolling(n).mean()
+        df = df.drop(country, axis=1)
 
-        plt.title(f'{country}')
-        plt.ylabel('Daily new cases')
-        plt.legend(loc='best')
-        plt.tight_layout()
-        plt.savefig(f'../img/{country.lower()}_cases_chg.png')
-        plt.show()  
+        self.plot_ts(df=df, title=country)
+
+        # df = self.data['Confirmed chg'][['Date', country]].copy()
+        # df = df.rename(columns={country: 'New cases'})
+        
+        # plt.plot(df['Date'], df['New cases'],
+        #          label='New cases', alpha=1/2)
+        
+        # plt.fill_between(df['Date'], y1=0, y2=df['New cases'], alpha=1/4)
+        
+        # plt.plot(df['Date'], df['New cases'].rolling(n).mean(), 
+        #          label=f'{n} day average', c='black')    
+        
+        # plt.xlim(df['Date'].min(), df['Date'].max())
+        # plt.ylim(0)
+
+        # plt.title(f'{country}')
+        # plt.ylabel('Daily new cases')
+        # plt.legend(loc='best')
+        # plt.tight_layout()
+        # plt.savefig(f'../img/{country.lower()}_cases_chg.png')
+        # plt.show()  
 
     def plot_with_slope(self, x, y):
         """
