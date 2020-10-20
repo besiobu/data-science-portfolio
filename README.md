@@ -6,7 +6,7 @@ The projects are written mainly in Python (Jupyter Notebook).
 For convenience each folder contains a pdf version of the notebook.
 
 ### [COVID-19](https://github.com/besiobu/data-science-portfolio/tree/master/covid-19)
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles_portfolio_readme.png)
 * Automated data acquisition process.
 * Combined data from multiple sources.
 * Visualized evolution of pandemic over time.
