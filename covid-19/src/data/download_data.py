@@ -21,7 +21,7 @@ def download_covid():
     """
 
     url = 'https://github.com/CSSEGISandData/COVID-19'
-    path = './data/COVID-19'
+    path = './data/raw/COVID-19'
 
     print('Downloading covid data.')
 
@@ -36,7 +36,7 @@ def download_countries():
     """
     
     url = 'https://datahub.io/JohnSnowLabs/country-and-continent-codes-list/r/country-and-continent-codes-list-csv.csv'
-    path = './data/datahub'
+    path = './data/raw/datahub'
 
     print('Downloading country data.')
 
@@ -52,7 +52,7 @@ def download_world_bank():
     Download data from the World Bank
     """
 
-    path = './data/world_bank'
+    path = './data/raw/world_bank'
 
     delete_directory(path=path)
 
