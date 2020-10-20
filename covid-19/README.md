@@ -45,10 +45,10 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 * A `second wave` of infections is appearing in some countries.
 
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/covid_tiles_project_readme.png)
 
-* The waves are of unequal magnitude - for example `Italy` vs `United Kingdom`:
-
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/united%20kingdom_chg.png)
+* Observe that the first peak is significantly lower than the current levels. For example `Italy` vs `United Kingdom`:
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/italy_chg.png)
+
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/united%20kingdom_chg.png)
