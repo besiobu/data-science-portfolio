@@ -19,7 +19,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 ## Summary
 
-* As of `2020-10-05` the global confirmed cases reached `35 000 000` cases.
+* As of `2020-10-20` the global confirmed cases reached `40 000 000` cases.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/world_cases.png)
 
@@ -41,7 +41,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 * The main contributor to the growth in `Asia` is `India`.
 
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/india_cases_chg.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/india_chg.png)
 
 * A `second wave` of infections is appearing in some countries.
 
@@ -49,6 +49,6 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 * The waves are of unequal magnitude - for example `Italy` vs `United Kingdom`:
 
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/united%20kingdom_cases_chg.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/united%20kingdom_chg.png)
 
-![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/italy_cases_chg.png)
+![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/italy_chg.png)
