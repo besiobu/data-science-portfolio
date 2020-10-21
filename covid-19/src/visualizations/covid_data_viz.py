@@ -1,3 +1,4 @@
+import math
 from functools import reduce
 
 import matplotlib.dates as mdates
@@ -206,7 +207,7 @@ class CovidDataViz(object):
         width = 1000
         height = width / 2.33
         dpi = 300
-        fontsize = 4
+        fontsize = 3
         fontfamily = 'serif'
 
         plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
@@ -219,7 +220,7 @@ class CovidDataViz(object):
         # plot and title
         extend_y_axis = 0.04
 
-        # Disable axis
+        # Disable spines
         ax.spines['top'].set_visible(False)
         ax.spines['bottom'].set_visible(False)
         ax.spines['left'].set_visible(False)
@@ -251,7 +252,7 @@ class CovidDataViz(object):
         # actually see the data without squinting
         for y_val in yticks:
             ax.plot(df['Date'], np.full((len(df), 1), y_val), c='black', 
-                    linestyle='dashed', linewidth=1/3, alpha=3/10)
+                    linestyle='dashed', linewidth=1/6, alpha=3/10)
 
         # User colors from color brewer.
         colours = ['#d7191c', '#fdae61', '#a6d96a', '#1a9641']
@@ -262,12 +263,12 @@ class CovidDataViz(object):
         # Plot the actual data
         for col,c in zip(cols, colours):
             # Line plot
-            ax.plot(df['Date'], df[col], linewidth=1, alpha=9/10, c=c)
+            ax.plot(df['Date'], df[col], linewidth=1/3, alpha=9/10, c=c)
 
             # Plot marker at end of x axis
             x = df['Date'].tail(1)
             y = df[col].tail(1)
-            ax.scatter(x=x, y=y, linewidth=1, c=c, marker='.', alpha=9/10)
+            ax.scatter(x=x, y=y, linewidth=1/3, c=c, marker='.', alpha=9/10)
 
             # Plot label outside plot
             ax.text(x=df['Date'].tail(1) + pd.Timedelta('7 days'), 
@@ -302,20 +303,66 @@ class CovidDataViz(object):
         """
             
         df = self.get_most_cases(case_type=statistic)
+        df.loc[df['Country'] == 'United Kingdom', 'Country'] = 'UK'
 
-        plt.figure()
-        plt.bar(df['Country'], df[statistic])
-        plt.xticks(rotation=90)
-        plt.title(f'{statistic}')
+        # Set proper aspect ratio and dpi
+        width = 1000
+        height = width / 1.78
+        dpi = 300
+        fontsize = 3
+        fontfamily = 'serif'
+
+        plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
+        ax = plt.subplot(111)
+
+        # Spines
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        for axis in ['bottom','left']:
+            ax.spines[axis].set_linewidth(1/5)            
+
+        # Plot
+        x = df['Country']
+        y = df[statistic]
+        ax.bar(x=x, height=y, width=1/2)
+
+        # Ticks
+        plt.xticks(rotation=90, fontsize=fontsize, family=fontfamily)
 
         if statistic == 'Mortality':
-            plt.ylabel('Moratlity Rate (%)')
+            ymin, ymax = math.floor(y.min()), y.max()
+            yticks, ylabels = get_vlines(ymin, ymax, k=4, shift=ymin)
         else:
-            plt.ylabel('Cases')
+            ymin, ymax = 0,  y.max()
+            yticks, ylabels = get_vlines(ymin, ymax, k=4, shift=0)
+
+        plt.yticks(ticks=yticks, labels=ylabels, 
+                   fontsize=fontsize, family=fontfamily)
+        ax.tick_params(width=1/5, color='black')
+
+        # Limits
+        plt.xlim(-1/2, len(df) - 1/2)
+        plt.ylim(ymin, ymax)
+
+        # Horizontal lines
+        for y_val in yticks:
+            ax.plot(np.linspace(-1, len(x), 1000), np.full((1000, 1), y_val), c='black', 
+                    linestyle='dashed', linewidth=1/5, alpha=3/10)        
+
+        # Labels
+        if statistic == 'Mortality':
+            plt.ylabel('Moratlity Rate [%]', fontsize=fontsize, family=fontfamily)
+        else:
+            plt.ylabel('Cases', fontsize=fontsize, family=fontfamily)
+
+        # Title
+        plt.title(label=f'{statistic}', fontsize=fontsize + 1, 
+                  family=fontfamily, weight='bold', loc='left')
 
         plt.tight_layout()
 
-        plt.savefig(f'../img/{statistic.lower()}_cases_most.png')
+        plt.savefig(fname=f'../img/{statistic.lower()}_cases_most.png',
+                    bbox_inches='tight')
 
         plt.show()                
 
@@ -352,41 +399,83 @@ class CovidDataViz(object):
             g = np.log(g)
             growth.append(list(g))
 
+        # Plot
+        # Set proper aspect ratio and dpi
+        width = 1000
+        height = width / 1.33
+        dpi = 300
+        fontsize = 3
+        fontfamily = 'serif'
+
+        plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
+        ax = plt.subplot(111)
+
         for g,p in zip(growth, periods):
 
             # Draw growth curves
-            plt.plot(range(steps), g, 
-                    c='black', 
-                    linestyle='dashed', 
-                    alpha=1/2)
+            ax.plot(range(steps), g, c='grey', linestyle='dashed', 
+                    lw=1/3, alpha=1/2)
 
             if p == 1:
                 s = f'Double every day'
             else:
                 s = f'Double every {str(p)} days'       
 
+            # Draw marker
+            x = steps - 1
+            y = g[steps - 1]
+            ax.scatter(x=x, y=y, linewidth=1/12, c='grey', alpha=1/2, marker='.')                    
+
             # Draw text outside
-            plt.text(x=steps,
-                    y=g[steps - 1],
-                    s=s, 
-                    alpha=3/4, 
-                    horizontalalignment='left',
-                    verticalalignment='center',
-                    rotation_mode='anchor')
+            x = steps
+            y = g[steps - 1]
+            ax.text(x=x, y=y, s=s, alpha=1, fontsize=fontsize, c='grey',
+                    family=fontfamily, horizontalalignment='left',
+                    verticalalignment='center', rotation_mode='anchor')
+
+
+        # Spines
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
 
         # Draw country level data
         plot_df = self.data['Confirmed t0'][countries].head(steps)
         for c in countries:
-            plt.plot(range(len(plot_df)), np.log(plot_df[c]), label=c)
+            ax.plot(range(len(plot_df)), np.log(plot_df[c]), label=c, lw=1/3)
 
-        plt.xlim(0, steps-1)
-        plt.legend(loc='best')
-        plt.ylabel('Confirmed cases, log scale')
-        plt.xlabel('Days since 100 cases')
+        # Ticks
+        plt.xticks(fontsize=fontsize, family=fontfamily)
+        plt.yticks(fontsize=fontsize, family=fontfamily)        
+        ax.tick_params(width=1/5, color='black')    
+
+        # Spines
+        for axis in ['top', 'bottom','left', 'right']:
+            ax.spines[axis].set_linewidth(1/5)  
+
+        # Limits
+        plt.xlim(0, steps)
+        
+        # Legend
+        legend = ax.legend(loc='upper left', 
+                           fancybox=False, prop={'family': fontfamily, 
+                                                 'size': fontsize})
+        legend.get_frame().set_linewidth(1/5)
+        legend.get_frame().set_edgecolor('black')        
+
+        # Labels
+        plt.ylabel(ylabel='Confirmed cases, log scale', fontsize=fontsize, 
+                   family=fontfamily)
+
+        plt.xlabel(xlabel='Days since 100 cases', fontsize=fontsize, 
+                   family=fontfamily)
+
+        plt.title(label='Doubling rate', fontsize=fontsize + 1, family=fontfamily,
+                   weight='bold', loc='left')
+
         plt.tight_layout()
 
         if save:
-            plt.savefig('../img/growth_plot.png')
+            plt.savefig(fname='../img/growth_plot.png', bbox_inches='tight')
             
         plt.show()    
 

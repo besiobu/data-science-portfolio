@@ -1,4 +1,4 @@
-def get_vlines(ymin, ymax, k=4):
+def get_vlines(ymin, ymax, k=4, shift=0):
     """
 
     Calculate and format y ticks and y labels.
@@ -28,7 +28,7 @@ def get_vlines(ymin, ymax, k=4):
         return label
         
     dy = (ymax - ymin)
-    yticks = [i / k * dy for i in range(0, k + 1)]
+    yticks = [shift + i / k * dy for i in range(0, k + 1)]
     ylabels = [ fmt_ytick(y) for y in yticks]
     
     return yticks, ylabels
