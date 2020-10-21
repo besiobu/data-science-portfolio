@@ -9,7 +9,7 @@ from IPython.display import display
 from matplotlib.dates import DateFormatter
 from scipy.stats import linregress
 
-from utils import get_vlines
+from utils import get_vlines, fmt_number, fmt_pct
 
 class CovidDataViz(object):
     """
@@ -205,7 +205,7 @@ class CovidDataViz(object):
 
         # Set proper aspect ratio and dpi
         width = 1000
-        height = width / 2.33
+        height = width / 1.78
         dpi = 300
         fontsize = 3
         fontfamily = 'serif'
@@ -222,9 +222,14 @@ class CovidDataViz(object):
 
         # Disable spines
         ax.spines['top'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-        ax.spines['left'].set_visible(False)
+        # ax.spines['bottom'].set_visible(False)
+        # ax.spines['left'].set_visible(False)
         ax.spines['right'].set_visible(False)
+
+        # Set spine width
+        ax.spines['left'].set_linewidth(1/5)
+        ax.spines['bottom'].set_linewidth(1/5)
+
 
         # Force ticks to bottom left
         ax.get_xaxis().tick_bottom()
@@ -237,7 +242,7 @@ class CovidDataViz(object):
         ymin = df.drop(['Date'], axis=1).min().min() 
         ymax = df.drop(['Date'], axis=1).max().max() 
 
-        yticks, ylabels = get_vlines(ymin, ymax, k=3)
+        yticks, ylabels = get_vlines(ymin, ymax, k=5)
 
         plt.yticks(ticks=yticks, labels=ylabels, 
                    fontsize=fontsize, family=fontfamily)
@@ -278,13 +283,13 @@ class CovidDataViz(object):
 
         # Display title left aligned to y axis
         plt.title(label=title, fontsize=fontsize + 1, family=fontfamily,
-                   weight='bold', loc='left')
+                   weight='bold', loc='center')
 
         # Set plot limits and extend y by 5%
         plt.xlim(xmin, xmax)
 
         # Set minimum y value to -2% of ymax so that 
-        plt.ylim(-extend_y_axis * ymax, (1 + extend_y_axis) * ymax)
+        plt.ylim(0, (1 + extend_y_axis) * ymax)
     
         plt.tick_params(axis='both', which='both', 
                         bottom=False, top=False,    
@@ -307,7 +312,7 @@ class CovidDataViz(object):
 
         # Set proper aspect ratio and dpi
         width = 1000
-        height = width / 1.78
+        height = width / 1.33
         dpi = 300
         fontsize = 3
         fontfamily = 'serif'
@@ -317,9 +322,12 @@ class CovidDataViz(object):
 
         # Spines
         ax.spines['top'].set_visible(False)
+        # ax.spines['bottom'].set_visible(False)
+        # ax.spines['left'].set_visible(False)
         ax.spines['right'].set_visible(False)
-        for axis in ['bottom','left']:
-            ax.spines[axis].set_linewidth(1/5)            
+
+        ax.spines['left'].set_linewidth(1/5)
+        ax.spines['bottom'].set_linewidth(1/5)
 
         # Plot
         x = df['Country']
@@ -331,10 +339,19 @@ class CovidDataViz(object):
 
         if statistic == 'Mortality':
             ymin, ymax = math.floor(y.min()), y.max()
-            yticks, ylabels = get_vlines(ymin, ymax, k=4, shift=ymin)
+            yticks, ylabels = get_vlines(ymin, ymax, k=5, shift=ymin)
+            ylabels = [lab+'%' for lab in ylabels]
+            bar_labels = [ fmt_pct(y) for y in list(df[statistic]) ]
+
         else:
             ymin, ymax = 0,  y.max()
-            yticks, ylabels = get_vlines(ymin, ymax, k=4, shift=0)
+            yticks, ylabels = get_vlines(ymin, ymax, k=5, shift=0)
+            bar_labels = [ fmt_number(y) for y in list(df[statistic]) ]
+
+        plt.tick_params(axis='both', which='both', 
+                        bottom=False, top=False,    
+                        labelbottom='on', left=False, 
+                        right=False, labelleft='on')                       
 
         plt.yticks(ticks=yticks, labels=ylabels, 
                    fontsize=fontsize, family=fontfamily)
@@ -342,22 +359,31 @@ class CovidDataViz(object):
 
         # Limits
         plt.xlim(-1/2, len(df) - 1/2)
-        plt.ylim(ymin, ymax)
+        plt.ylim(ymin, ymax + (0.02 * ymax))
 
         # Horizontal lines
         for y_val in yticks:
             ax.plot(np.linspace(-1, len(x), 1000), np.full((1000, 1), y_val), c='black', 
                     linestyle='dashed', linewidth=1/5, alpha=3/10)        
 
+        # Annotations
+        rects = ax.patches
+
+        for rect, label in zip(rects, bar_labels):
+            height = rect.get_height()
+            ax.text(x=rect.get_x() + rect.get_width() / 2, 
+                    y=height + (0.02 * ymax), s=label, ha='center', va='bottom',
+                    fontsize=fontsize, family=fontfamily)        
+
         # Labels
         if statistic == 'Mortality':
-            plt.ylabel('Moratlity Rate [%]', fontsize=fontsize, family=fontfamily)
+            plt.ylabel('Moratlity rate in percent', fontsize=fontsize, family=fontfamily)
         else:
-            plt.ylabel('Cases', fontsize=fontsize, family=fontfamily)
+            plt.ylabel('Number of cases', fontsize=fontsize, family=fontfamily)
 
         # Title
         plt.title(label=f'{statistic}', fontsize=fontsize + 1, 
-                  family=fontfamily, weight='bold', loc='left')
+                  family=fontfamily, weight='bold', loc='center')
 
         plt.tight_layout()
 
@@ -366,7 +392,7 @@ class CovidDataViz(object):
 
         plt.show()                
 
-    def plot_growth(self, countries, periods, steps=50, save=False):
+    def plot_growth(self, countries, periods, steps=60, save=False):
         """
         
         Plot growth curves, log scale.
@@ -410,6 +436,7 @@ class CovidDataViz(object):
         plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
         ax = plt.subplot(111)
 
+        ymax = 0
         for g,p in zip(growth, periods):
 
             # Draw growth curves
@@ -433,6 +460,9 @@ class CovidDataViz(object):
                     family=fontfamily, horizontalalignment='left',
                     verticalalignment='center', rotation_mode='anchor')
 
+            if g[-1] >= ymax:
+                ymax = g[-1]
+
 
         # Spines
         ax.spines['top'].set_visible(False)
@@ -446,7 +476,10 @@ class CovidDataViz(object):
         # Ticks
         plt.xticks(fontsize=fontsize, family=fontfamily)
         plt.yticks(fontsize=fontsize, family=fontfamily)        
-        ax.tick_params(width=1/5, color='black')    
+        plt.tick_params(axis='both', which='both', 
+                        bottom=False, top=False,    
+                        labelbottom='on', left=False, 
+                        right=False, labelleft='on')                     
 
         # Spines
         for axis in ['top', 'bottom','left', 'right']:
@@ -454,6 +487,7 @@ class CovidDataViz(object):
 
         # Limits
         plt.xlim(0, steps)
+        plt.ylim(np.log(a), ymax + 1/2)
         
         # Legend
         legend = ax.legend(loc='upper left', 
@@ -470,7 +504,7 @@ class CovidDataViz(object):
                    family=fontfamily)
 
         plt.title(label='Doubling rate', fontsize=fontsize + 1, family=fontfamily,
-                   weight='bold', loc='left')
+                   weight='bold', loc='center')
 
         plt.tight_layout()
 
