@@ -15,7 +15,7 @@ The objective is to visualize various aspects of the pandemic of 2020.
 ## Project description
 I plot `time series` for `continents` and `countries`, inspect the `mortality rate` and create visuals to view the `rate of the spread` in the early days of the pandemic.
 Furthermore I combine data about cases with data from the `World Bank` to see if I can uncover any interesting insights. For the analysis see the `notebooks` folder.
-In total there are `52` different plots of various granularities. See the `img` folder for the plots.
+In total there are `52` different plots of various granularities. See the `img` folder for the plots. Note that the data is constantly changing. Some time in the future I will stop the project and do a more in depth analyses.
 
 ## Summary
 
@@ -31,7 +31,7 @@ In total there are `52` different plots of various granularities. See the `img` 
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/confirmed_cases_most.png)
 
-* The countries with the highest mortality rate are `Italy` followed by `Mexico` and the `United Kingdom`.
+* The countries with the highest mortality rate are `Mexico` followed by `Italy` and `Ecuador`.
 
 ![image](https://github.com/besiobu/data-science-portfolio/blob/master/covid-19/img/mortality_cases_most.png)
 
