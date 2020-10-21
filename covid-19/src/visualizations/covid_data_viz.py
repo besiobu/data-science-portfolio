@@ -203,10 +203,10 @@ class CovidDataViz(object):
         """
 
         # Set proper aspect ratio and dpi
-        width = 1650
+        width = 1000
         height = width / 2.33
         dpi = 300
-        fontsize = 8
+        fontsize = 4
         fontfamily = 'serif'
 
         plt.figure(figsize=(width/dpi, height/dpi), dpi=dpi)
@@ -251,7 +251,7 @@ class CovidDataViz(object):
         # actually see the data without squinting
         for y_val in yticks:
             ax.plot(df['Date'], np.full((len(df), 1), y_val), c='black', 
-                    linestyle='dashed', linewidth=1/2, alpha=3/10)
+                    linestyle='dashed', linewidth=1/3, alpha=3/10)
 
         # User colors from color brewer.
         colours = ['#d7191c', '#fdae61', '#a6d96a', '#1a9641']
@@ -262,12 +262,12 @@ class CovidDataViz(object):
         # Plot the actual data
         for col,c in zip(cols, colours):
             # Line plot
-            ax.plot(df['Date'], df[col], linewidth=3/2, alpha=9/10, c=c)
+            ax.plot(df['Date'], df[col], linewidth=1, alpha=9/10, c=c)
 
             # Plot marker at end of x axis
             x = df['Date'].tail(1)
             y = df[col].tail(1)
-            ax.scatter(x=x, y=y, linewidth=3, c=c, marker='.', alpha=9/10)
+            ax.scatter(x=x, y=y, linewidth=1, c=c, marker='.', alpha=9/10)
 
             # Plot label outside plot
             ax.text(x=df['Date'].tail(1) + pd.Timedelta('7 days'), 
